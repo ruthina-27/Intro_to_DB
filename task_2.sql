@@ -1,7 +1,7 @@
 -- SQL script to create tables for alx_book_store database
 -- All SQL keywords in uppercase as required
 
-USE alx_book_store;
+USE alxbookstore;
 
 -- Create authors table
 CREATE TABLE IF NOT EXISTS authors (

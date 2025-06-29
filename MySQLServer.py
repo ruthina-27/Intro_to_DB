@@ -1,14 +1,14 @@
 #!/usr/bin/python3
-"""Script to create the alx_book_store database in MySQL"""
+"""Script to create the alxbookstore database in MySQL"""
 
-import pymysql
+import mysql.connector
 from sys import argv
 
 def create_database():
-    """Create the alx_book_store database if it doesn't exist"""
+    """Create the alxbookstore database if it doesn't exist"""
     try:
         # Connect to MySQL server (without specifying a database)
-        connection = pymysql.connect(
+        connection = mysql.connector.connect(
             host="localhost",
             user=argv[1],
             password=argv[2],
@@ -19,16 +19,16 @@ def create_database():
         cursor = connection.cursor()
         
         # Create database (IF NOT EXISTS prevents errors if DB already exists)
-        cursor.execute("CREATE DATABASE IF NOT EXISTS alx_book_store")
+        cursor.execute("CREATE DATABASE IF NOT EXISTS alxbookstore")
         
-        print("Database 'alx_book_store' created successfully!")
+        print("Database 'alxbookstore' created successfully!")
         
-    except pymysql.Error as e:
+    except mysql.connector.Error as e:
         print(f"Error connecting to MySQL: {e}")
         
     finally:
         # Close the connection if it was established
-        if 'connection' in locals() and connection.open:
+        if 'connection' in locals() and connection.is_connected():
             cursor.close()
             connection.close()
 
